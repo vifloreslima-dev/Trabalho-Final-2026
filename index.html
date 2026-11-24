@@ -1,271 +1,478 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Trabalho Final</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-        <style>
-          .inicio {
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    text-align: center;
-    padding: 65px 20px;
-    margin: 20px;
-    border-radius: 12px;
-}
+    <title>História em Foco</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.inicio h1 {
-    color: #492f13;
-    font-family: Georgia, serif;
-    font-size: 48px;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 5px #3B2A22;
-}
+        body {
+            background-color: #171512;
+            color: #eee5d8;
+            font-family: Arial, sans-serif;
+        }
 
+        
+        nav {
+            height: 75px;
+            padding: 0 7%;
+            background-color: #171512;
+            border-bottom: 1px solid #51402d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
 
-.inicio .subtitulo {
-    color: #3B2A22;
-    font-family: Georgia, serif;
-    font-size: 27px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #F3EBDD;
-}
+        .logo {
+            color: #d2aa75;
+            font-family: Georgia, serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
 
+        nav div {
+            display: flex;
+            gap: 30px;
+        }
 
-.inicio p:not(.subtitulo) {
-    color: #F3EBDD;
-    font-family: Arial, sans-serif;
-    font-size: 19px;
-    text-shadow: 2px 2px 4px #3B2A22;
-}
+        nav a {
+            color: #e7dfd2;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
 
+        nav a:hover,
+        nav a.atual {
+            color: #d2aa75;
+        }
 
-.historia,
-.documentarios {
-    background-color: #8B4B35;
-    color: #F3EBDD;
-    font-family: Georgia, serif;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    margin: 8px;
-    display: inline-block;
-    transition: 0.3s;
-}
+        /* CAPA PRINCIPAL */
+        .hero {
+            min-height: 590px;
+            background:
+                linear-gradient(90deg, rgba(15,13,11,0.95), rgba(15,13,11,0.55), rgba(15,13,11,0.15)),
+                linear-gradient(0deg, #171512, transparent 45%),
+                url("dada.png");
 
-.historia:hover,
-.documentarios:hover {
-    background-color: #3B2A22;
-    color: #F3EBDD;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 70px 9%;
+        }
+
+        .hero-conteudo {
+            max-width: 700px;
+        }
+
+        .etiqueta {
+            color: #d2aa75;
+            font-size: 12px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(42px, 6vw, 75px);
+            line-height: 1.08;
+            color: #f2eadf;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #d2aa75;
+        }
+
+        .hero p {
+            color: #d3c8b8;
+            line-height: 1.9;
+            font-size: 17px;
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .botao {
+            display: inline-block;
+            background-color: #a67a4f;
+            color: #171512;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #e1c29a;
+            transform: translateY(-3px);
+        }
+
+        /* INTRODUÇÃO */
+        .introducao {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .introducao small {
+            color: #c49b69;
+            letter-spacing: 4px;
+            font-size: 11px;
+        }
+
+        .introducao h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            margin: 15px 0;
+            color: #eee5d8;
+        }
+
+        .introducao p {
+            max-width: 750px;
+            margin: auto;
+            color: #aaa093;
+            line-height: 1.9;
+        }
+
+        /* DESTAQUES */
+        .destaques {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            padding: 30px 8% 75px;
+        }
+
+        .destaque {
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+            background-color: #302820;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .destaque img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+            filter: brightness(0.6) sepia(0.2);
+        }
+
+        .destaque:hover img {
+            transform: scale(1.07);
+            filter: brightness(0.8);
+        }
+
+        .destaque::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+        }
+
+        .destaque-texto {
+            position: relative;
+            z-index: 1;
+            padding: 30px;
+        }
+
+        .destaque-texto small {
+            color: #d2aa75;
+            letter-spacing: 3px;
+            font-size: 11px;
+        }
+
+        .destaque-texto h3 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            margin: 12px 0;
+        }
+
+        .destaque-texto p {
+            color: #d0c5b7;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* FRASE DE DESTAQUE */
+        .frase {
+            padding: 65px 20px;
+            text-align: center;
+            background-color: #24201a;
+            border-top: 1px solid #51402d;
+            border-bottom: 1px solid #51402d;
+        }
+
+        .frase h2 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            color: #d2aa75;
+            font-style: italic;
+        }
+
+        .frase p {
+            color: #aaa093;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        
+        .sobre {
+            padding: 65px 10%;
+            text-align: center;
+        }
+
+        .sobre h2 {
+            color: #d2aa75;
+            font-family: Georgia, serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .sobre p {
+            max-width: 850px;
+            margin: auto;
+            color: #aaa093;
+            line-height: 1.9;
+        }
+
+        /* IA */
+        .ia {
+            background-color: #24201a;
+            padding: 45px 10%;
+            text-align: center;
+        }
+
+        .ia h2 {
+            font-family: Georgia, serif;
+            color: #d2aa75;
+            margin-bottom: 20px;
+        }
+
+        .ia p {
+            max-width: 850px;
+            margin: auto;
+            color: #aaa093;
+            line-height: 1.9;
+        }
+
+        
+        footer {
+            background-color: #100f0d;
+            border-top: 1px solid #51402d;
+            text-align: center;
+            padding: 25px;
+            color: #938778;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                height: auto;
+                padding: 20px;
+                flex-direction: column;
+                gap: 18px;
             }
-           card {
-    width: 18rem;
-    background-color: #F4F1EA;
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: 0.3s;
-}
 
-.card:hover {
-    transform: translateY(-6px);
-}
+            nav div {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
 
-.card-title {
-    color: #292929;
-    font-size: 22px;
-    font-weight: bold;
-}
+            nav a {
+                font-size: 12px;
+            }
 
-.card-body h6 {
-    color: #5c4118;
-    font-weight: bold;
-}
+            .hero {
+                min-height: 530px;
+                padding: 55px 7%;
+            }
 
-.card-text {
-    color: #55514A;
-    line-height: 1.6;
-}
+            .hero p {
+                font-size: 15px;
+            }
 
-.card img {
-    height: 180px;
-    object-fit: cover;
-}
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-.cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: 50px auto;
-    flex-wrap: wrap;
-}.cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
-    margin: 50px auto;
-    flex-wrap: nowrap;
-}
+            .introducao h2 {
+                font-size: 29px;
+            }
 
-.card {
-    width: 18rem;
-    flex-shrink: 0;
-}
-body {
-    background-image: url("0909.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-.sobre {
-    background-color: rgba(244, 241, 234, 0.95);
-    padding: 35px 20px;
-    margin: 40px 0 0;
-    width: 100%;
-    min-height: 100vh;
-    box-sizing: border-box;
-    text-align: center;
-}
+            .destaques {
+                grid-template-columns: 1fr;
+                padding: 20px 6% 50px;
+            }
 
-.sobre h2 {
-    color: #292929;
-    margin-bottom: 15px;
-}
+            .destaque {
+                min-height: 300px;
+            }
 
-.sobre p {
-    color: #55514A;
-    line-height: 1.6;
-    max-width: 850px;
-    margin: auto;
-}
-        </style>
-    </head>
-    <body>
-      
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Página inicial</a>
-    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-      </div>
-      <div class="drawer-body">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Guerras</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Documentários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Linhaa do Tempo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Sobre</a>
-          </li>
-        </ul>
-      </div>
-    </dialog>
-  </div>
-</nav>
-<div class="inicio">
-    <h1>HISTÓRIA EM FOCO</h1>
+            .frase h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
 
-    <p class="subtitulo">
-        O passado que transformou o mundo.
-    </p>
-
-    <p>
-        Conheça conflitos, acontecimentos e histórias
-        que marcaram a humanidade.
-    </p>
-
-    <a href="historia.html" class="historia">
-        História das Guerras
-    </a>
-
-    <a href="documentarios.html" class="documentarios">
-        Documentários
-    </a>
-</div>
-</a>
-
-</a>
-</div>
-<div class="cards">
+<body>
 
     
-    <div class="card">
-        <img src="flores.png" class="card-img-top" alt="História das Guerras">
+    <nav>
+        <div class="logo">HISTÓRIA EM FOCO</div>
 
-        <div class="card-body">
-            <h5 class="card-title">História das Guerras</h5>
-
-            <p class="card-text">
-                Conheça os conflitos que marcaram a humanidade,
-                suas causas e consequências ao longo do tempo.
-            </p>
-
-            <hr>
-
-            <h6>Você sabia?</h6>
-
-            <p class="card-text">
-                Algumas guerras provocaram grandes mudanças
-                nas fronteiras e na organização dos países.
-            </p>
-
-            <a href="historia.html" class="btn btn-dark">
-                Explorar história
-            </a>
+        <div>
+            <a href="index.html" class="atual">INÍCIO</a>
+            <a href="historia.html">GUERRAS</a>
+            <a href="documentarios.html">DOCUMENTÁRIOS</a>
         </div>
-    </div>
+    </nav>
 
     
-    <div class="card">
-        <img src="lima.png" class="card-img-top" alt="Documentários">
+    <header class="hero">
 
-        <div class="card-body">
-            <h5 class="card-title">Documentários</h5>
+        <div class="hero-conteudo">
 
-            <p class="card-text">
-                Conheça produções audiovisuais que apresentam
-                acontecimentos reais por meio de imagens,
-                entrevistas e relatos.
+            <div class="etiqueta">
+                ARQUIVOS HISTÓRICOS • MEMÓRIA • CONFLITOS
+            </div>
+
+            <h1>
+                O passado que <span>transformou</span> o mundo.
+            </h1>
+
+            <p>
+                Guerras, decisões e acontecimentos que marcaram
+                gerações. Uma viagem pela história para compreender
+                os conflitos que ajudaram a construir o mundo atual.
             </p>
 
-            <hr>
-
-            <h6>Por que assistir?</h6>
-
-            <p class="card-text">
-                Os documentários ajudam a compreender diferentes
-                perspectivas sobre acontecimentos históricos.
-            </p>
-
-            <a href="documentarios.html" class="btn btn-dark">
-                Ver documentários
+            <a href="historia.html" class="botao">
+                EXPLORAR A HISTÓRIA →
             </a>
+
         </div>
-    </div>
-</div>
-<div class="sobre" id="sobre">
 
-    <h2>Sobre o projeto</h2>
+    </header>
 
-    <p>
-        Esta  foi desenvolvido com o objetivo de apresentar
-        acontecimentos históricos e documentários relacionados
-        à história das guerras, permitindo conhecer melhor fatos
-        que marcaram o mundo.
-    </p>
+    
+    <section class="introducao">
 
-</div>
-    </body>
+        <small>CONHEÇA NOSSO ACERVO</small>
+
+        <h2>Histórias que não podem ser esquecidas</h2>
+
+        <p>
+            Cada acontecimento histórico carrega histórias,
+            transformações e consequências. Explore os conflitos
+            da humanidade e conheça documentários que ajudam
+            a preservar a memória desses acontecimentos.
+        </p>
+
+    </section>
+
+    
+    <main class="destaques">
+
+        <a href="historia.html" class="destaque">
+
+            <img src="mali.png" alt="Imagem sobre a história das guerras">
+
+            <div class="destaque-texto">
+
+                <small>ACERVO HISTÓRICO / 01</small>
+
+                <h3>História das Guerras</h3>
+
+                <p>
+                    Conheça os conflitos, suas origens,
+                    acontecimentos e consequências.
+                </p>
+
+            </div>
+
+        </a>
+
+        <a href="documentarios.html" class="destaque">
+
+            <img src="dodo.png" alt="Imagem sobre documentários históricos">
+
+            <div class="destaque-texto">
+
+                <small>ACERVO AUDIOVISUAL / 02</small>
+
+                <h3>Documentários</h3>
+
+                <p>
+                    Descubra produções que apresentam registros,
+                    relatos e diferentes perspectivas históricas.
+                </p>
+
+            </div>
+
+        </a>
+
+    </main>
+
+    
+    <section class="frase">
+
+        <h2>"Conhecer o passado é compreender o presente."</h2>
+
+        <p>HISTÓRIA EM FOCO — UMA JORNADA PELA MEMÓRIA DA HUMANIDADE</p>
+
+    </section>
+
+    
+    <section class="sobre" id="sobre">
+
+        <h2>Sobre o projeto</h2>
+
+        <p>
+            O História em Foco foi desenvolvido para apresentar
+            acontecimentos históricos, principalmente conflitos
+            que marcaram a humanidade. O projeto reúne informações
+            sobre guerras e documentários, buscando tornar o
+            conhecimento histórico mais acessível e interessante.
+        </p>
+
+    </section>
+
+    
+    <section class="ia">
+
+        <h2>Inteligência Artificial no desenvolvimento</h2>
+
+        <p>
+            O ChatGPT foi utilizado como ferramenta de apoio
+            na elaboração de sugestões de conteúdo, organização
+            das informações, estruturação das páginas e melhorias
+            no HTML e CSS. A ferramenta também auxiliou na definição
+            da identidade visual e na revisão do código.
+        </p>
+
+    </section>
+
+    
+    <footer>
+        HISTÓRIA EM FOCO © 2026 | MEMÓRIA E CONHECIMENTO
+    </footer>
+
+</body>
 </html>
